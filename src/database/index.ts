@@ -1,6 +1,6 @@
 // import 'reflect-metadata';
 import {createConnection, ConnectionOptions} from 'typeorm';
-import {User} from './entity/User';
+import User from './entity/User';
 
 // const options: ConnectionOptions = {
 //   type: 'mysql',
