@@ -2,7 +2,7 @@ import { getConnection } from "typeorm";
 import UserEntity from "../../entity/User";
 import User from "app/models/users";
 
-class UserServices {
+class AuthServices {
   constructor() {}
 
   async getAll(): Promise<User[]> {
@@ -11,13 +11,6 @@ class UserServices {
       .find();
     return users;
   }
-
-  async getByEmail(email: string): Promise<User | undefined> {
-    let user = await getConnection()
-      .getRepository(UserEntity)
-      .findOne({ where: { email: `${email}` } });
-    return user;
-  }
 }
 
-export default new UserServices();
+export default new AuthServices();

@@ -1,8 +1,13 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
+import flash from "connect-flash";
+import session from "express-session";
+import { TypeormStore } from "connect-typeorm";
 import path from "path";
 import nunjucks from "nunjucks";
 import routes from "./routes/routes";
 import database from "../database";
+import bodyParser = require("body-parser");
+import { TableInheritance } from "typeorm";
 
 class ServerExpress {
   private app!: express.Application;
@@ -26,6 +31,18 @@ class ServerExpress {
 
   private middlewares(): void {
     this.app.use(express.json());
+    this.app.use(bodyParser());
+
+    this.app.use(flash());
+
+    const sessionConfig = {
+      secret: "snippets@",
+      resave: false,
+      saveUninitialized: false,
+      store: new TypeormStore({})
+    };
+
+    this.app.use(session(sessionConfig));
 
     const staticPath =
       this.environment === "production"
