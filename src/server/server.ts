@@ -26,6 +26,13 @@ class ServerExpress {
 
   private middlewares(): void {
     this.app.use(express.json());
+
+    const staticPath =
+      this.environment === "production"
+        ? path.resolve("app", "public")
+        : path.resolve("src", "app", "public");
+
+    this.app.use(express.static(staticPath));
   }
 
   private config(): void {
