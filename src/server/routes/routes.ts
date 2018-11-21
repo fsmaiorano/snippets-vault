@@ -1,7 +1,11 @@
 import { Router, Request, Response, NextFunction } from "express";
 import middlewares from "../middlewares/middlewares";
 
-import { UserController, AuthController } from "../../app/controllers";
+import {
+  UserController,
+  AuthController,
+  DashboardController
+} from "../../app/controllers";
 
 class Routes {
   public router: Router;
@@ -23,7 +27,8 @@ class Routes {
     this.router.post("/register", this.auth);
     this.router.post("/authenticate", this.auth);
 
-    // this.router.get("/users", this.users);
+    // Dashboard
+    this.router.get("/app/dashboard", this.dashboard);
   }
 
   private auth(req: Request, res: Response, next: NextFunction) {
@@ -47,10 +52,14 @@ class Routes {
     }
   }
 
-  private users(req: Request, res: Response, next: NextFunction) {
-    const userController = UserController.getAll();
-    return res.render("index");
+  private dashboard(req: Request, res: Response, next: NextFunction) {
+    return DashboardController.index(req, res, next);
   }
+
+  // private users(req: Request, res: Response, next: NextFunction) {
+  //   const userController = UserController.getAll();
+  //   return res.render("index");
+  // }
 }
 
 export default Routes;
