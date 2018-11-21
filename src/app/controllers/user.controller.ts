@@ -3,8 +3,8 @@ import { UserService } from "../../database/services";
 class UserController {
   constructor() {}
 
-  getAll() {
-    const users = UserService.getAll();
+  async getAll() {
+    const users = await UserService.getAll();
     debugger;
   }
 }

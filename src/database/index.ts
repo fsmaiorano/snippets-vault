@@ -1,6 +1,20 @@
 // import 'reflect-metadata';
-import {createConnection, ConnectionOptions} from 'typeorm';
-import User from './entity/User';
+import { createConnection, ConnectionOptions } from "typeorm";
+import { create } from "domain";
+
+class Database {
+  constructor() {}
+
+  createConnection() {
+    createConnection();
+  }
+}
+
+export default new Database();
+
+//import User from "./entity/User";
+
+// createConnection();
 
 // const options: ConnectionOptions = {
 //   type: 'mysql',
@@ -14,16 +28,16 @@ import User from './entity/User';
 //   entities: [User]
 // };
 
-createConnection()
-  .then(async connection => {
-    let user = new User();
-    user.name = 'fabio';
-    user.email = 'email@fabio.com';
-    user.password = 'pass';
+// createConnection()
+//   .then(async connection => {
+//     let user = new User();
+//     user.name = "fabio";
+//     user.email = "email@fabio.com";
+//     user.password = "pass";
 
-    let userRepository = connection.getRepository(User);
+//     let userRepository = connection.getRepository(User);
 
-    await userRepository.save(user);
-    await connection.close();
-  })
-  .catch(error => console.log(error));
+//     await userRepository.save(user);
+//     await connection.close();
+//   })
+//   .catch(error => console.log(error));

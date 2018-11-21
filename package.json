@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "./src/index.ts",
   "scripts": {
-    "prestart": "yarn typeorm:sync",
+    "prestart": "yarn typeorm:sync && yarn typeorm:migration:run",
     "start": "cross-env NODE_ENV=development nodemon",
     "build": "cross-env NODE_ENV=production && npm-run-all typeorm:sync typeorm:migration:run clean-dist typescript copy-files",
     "typescript": "tsc",

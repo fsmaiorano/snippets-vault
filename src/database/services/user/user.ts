@@ -4,7 +4,9 @@ import {
   QueryBuilder,
   Table,
   createConnection,
-  getManager
+  getManager,
+  Connection,
+  getConnection
 } from "typeorm";
 import User from "../../entity/User";
 
@@ -12,11 +14,10 @@ class UserServices {
   constructor() {}
 
   async getAll() {
-    debugger;
-    const users = await getManager()
-      .createQueryBuilder(User, "user")
-      .getMany();
-    debugger;
+    const users = await getConnection()
+      .getRepository(User)
+      .find();
+    return users;
   }
 }
 

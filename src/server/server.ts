@@ -2,12 +2,13 @@ import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import nunjucks from "nunjucks";
 import routes from "./routes/routes";
+import database from "../database";
 
 class ServerExpress {
   private app!: express.Application;
   private environment: any = process.env.NODE_ENV;
   private port!: string | number;
-  public static readonly PORT: number = 3000;
+  public static readonly PORT: number = 4000;
 
   constructor() {
     this.createApp();
@@ -15,6 +16,7 @@ class ServerExpress {
     this.middlewares();
     this.routes();
     this.listen();
+    this.createDBConnection();
     this.initNunjucks();
   }
 
@@ -56,6 +58,10 @@ class ServerExpress {
       watch: true
     });
     this.app.set("view engine", "njk");
+  }
+
+  private createDBConnection(): void {
+    database.createConnection();
   }
 }
 

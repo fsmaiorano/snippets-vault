@@ -4,7 +4,7 @@
   "port": 3306,
   "username": "root",
   "password": "123456",
-  "database": "snippetfy",
+  "database": "snippets",
   "synchronize": true,
   "logging": true,
   "entities": ["./src/database/entity/**/*.ts"],
