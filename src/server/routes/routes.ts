@@ -29,6 +29,8 @@ class Routes {
 
     // Dashboard
     this.router.get("/app/dashboard", this.dashboard);
+
+    // this.router.get("/users", this.users);
   }
 
   private auth(req: Request, res: Response, next: NextFunction) {

@@ -5,6 +5,11 @@ import { UserService } from "../../database/services";
 import { Request, Response } from "express";
 import { NextFunction } from "connect";
 
+type RequestSession = Request & {
+  session: Express.Session;
+  sessionID: string;
+};
+
 class AuthController {
   constructor() {}
 
@@ -45,7 +50,7 @@ class AuthController {
     }
   }
 
-  async authentication(req: Request, res: Response, next: NextFunction) {
+  async authentication(req: RequestSession, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.body;
       const user = await UserService.getByEmail(email);
@@ -58,7 +63,10 @@ class AuthController {
         return res.redirect("back");
       }
 
-      return res.redirect("/app/dashboard");
+      req.session.user = user;
+      req.session.save(e => {
+        return res.redirect("/app/dashboard");
+      });
     } catch (err) {
       return next(err);
     }
