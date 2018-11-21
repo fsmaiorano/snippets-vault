@@ -1,10 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import nunjucks from "nunjucks";
-import routes from "../routes/routes";
+import routes from "./routes/routes";
 
 class ServerExpress {
   private app!: express.Application;
+  private environment: any = process.env.NODE_ENV;
   private port!: string | number;
   public static readonly PORT: number = 3000;
 
@@ -44,7 +45,12 @@ class ServerExpress {
   }
 
   private initNunjucks(): void {
-    nunjucks.configure(path.resolve("src", "views"), {
+    const pathViews =
+      this.environment === "production"
+        ? path.resolve("app", "views")
+        : path.resolve("src", "app", "views");
+
+    nunjucks.configure(pathViews, {
       autoescape: true,
       express: this.app,
       watch: true
