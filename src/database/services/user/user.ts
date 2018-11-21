@@ -5,6 +5,13 @@ import User from "app/models/users";
 class UserServices {
   constructor() {}
 
+  async create(user: User): Promise<User> {
+    const newUser = await getConnection()
+      .getRepository(UserEntity)
+      .save(user);
+    return newUser;
+  }
+
   async getAll(): Promise<User[]> {
     const users = await getConnection()
       .getRepository(UserEntity)

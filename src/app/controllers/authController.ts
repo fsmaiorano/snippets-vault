@@ -1,5 +1,5 @@
 // Models
-import User from "app/models/users";
+import User from "../models/users";
 import bcrypt from "bcryptjs";
 import { UserService } from "../../database/services";
 import { Request, Response } from "express";
@@ -8,22 +8,57 @@ import { NextFunction } from "connect";
 class AuthController {
   constructor() {}
 
+  async signin(req: Request, res: Response, next: NextFunction) {
+    return res.render("auth/signin");
+  }
+
+  async signup(req: Request, res: Response, next: NextFunction) {
+    return res.render("auth/signup");
+  }
+
+  async register(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { name, email, password } = req.body;
+      const user = await UserService.getByEmail(email);
+
+      if (user) {
+        // usuário já existe
+        return res.redirect("back");
+      }
+
+      const newPassword = await bcrypt.hash(password, 5);
+
+      let newUser = new User();
+      newUser = {
+        name: name,
+        password: newPassword,
+        email: email,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+
+      await UserService.create(newUser);
+
+      return res.redirect("/dashboard");
+    } catch (err) {
+      return next(err);
+    }
+  }
+
   async authentication(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.body;
       const user = await UserService.getByEmail(email);
 
       if (!user) {
-        req.flash("error", "Usuário inexistente");
         return res.redirect("back");
       }
 
       if (!(await bcrypt.compare(password, user.password))) {
-        req.flash("error", "Senha incorreta");
         return res.redirect("back");
       }
 
-      debugger;
+      return res.redirect("/dashboard");
     } catch (err) {
       return next(err);
     }

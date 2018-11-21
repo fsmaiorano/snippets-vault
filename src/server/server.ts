@@ -33,16 +33,16 @@ class ServerExpress {
     this.app.use(express.json());
     this.app.use(bodyParser());
 
-    this.app.use(flash());
+    // this.app.use(flash());
 
-    const sessionConfig = {
-      secret: "snippets@",
-      resave: false,
-      saveUninitialized: false,
-      store: new TypeormStore({})
-    };
+    // const sessionConfig = {
+    //   secret: "snippets@",
+    //   resave: false,
+    //   saveUninitialized: false,
+    //   store: new TypeormStore({})
+    // };
 
-    this.app.use(session(sessionConfig));
+    // this.app.use(session(sessionConfig));
 
     const staticPath =
       this.environment === "production"

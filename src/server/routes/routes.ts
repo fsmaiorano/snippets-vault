@@ -19,6 +19,9 @@ class Routes {
 
     // Auth
     this.router.get("/", this.auth);
+    this.router.get("/signup", this.auth);
+
+    this.router.post("/register", this.auth);
     this.router.post("/authenticate", this.auth);
 
     this.router.get("/users", this.users);
@@ -28,13 +31,21 @@ class Routes {
     if (req.method === "POST") {
       switch (req.path) {
         case "/authenticate":
-          AuthController.authentication(req, res, next);
-          break;
+          return AuthController.authentication(req, res, next);
+        case "/register":
+          return AuthController.register(req, res, next);
         default:
       }
     }
-
-    return res.render("auth/signin");
+    if (req.method === "GET") {
+      switch (req.path) {
+        case "/":
+          return AuthController.signin(req, res, next);
+        case "/signup":
+          return AuthController.signup(req, res, next);
+        default:
+      }
+    }
   }
 
   private users(req: Request, res: Response, next: NextFunction) {
