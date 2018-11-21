@@ -16,13 +16,13 @@ class Routes {
     this.router.use(middlewares.log);
 
     // ROUTES
-    this.router.get("/", this.root);
+    this.router.get("/", this.auth);
 
     this.router.get("/users", this.users);
   }
 
-  private root(req: Request, res: Response, next: NextFunction) {
-    return res.render("index");
+  private auth(req: Request, res: Response, next: NextFunction) {
+    return res.render("auth/signin");
   }
 
   private users(req: Request, res: Response, next: NextFunction) {

@@ -1,11 +1,14 @@
 import { UserService } from "../../database/services";
 
+// Models
+import User from "app/models/users";
+
 class UserController {
   constructor() {}
 
-  async getAll() {
+  async getAll(): Promise<User[]> {
     const users = await UserService.getAll();
-    debugger;
+    return users;
   }
 }
 

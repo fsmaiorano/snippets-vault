@@ -8,14 +8,15 @@ import {
   Connection,
   getConnection
 } from "typeorm";
-import User from "../../entity/User";
+import UserEntity from "../../entity/User";
+import User from "app/models/users";
 
 class UserServices {
   constructor() {}
 
-  async getAll() {
+  async getAll(): Promise<User[]> {
     const users = await getConnection()
-      .getRepository(User)
+      .getRepository(UserEntity)
       .find();
     return users;
   }
