@@ -39,7 +39,7 @@ class AuthController {
 
       await UserService.create(newUser);
 
-      return res.redirect("/dashboard");
+      return res.redirect("/app/dashboard");
     } catch (err) {
       return next(err);
     }
@@ -58,7 +58,7 @@ class AuthController {
         return res.redirect("back");
       }
 
-      return res.redirect("/dashboard");
+      return res.redirect("/app/dashboard");
     } catch (err) {
       return next(err);
     }

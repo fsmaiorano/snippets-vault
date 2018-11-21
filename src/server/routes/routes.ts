@@ -20,11 +20,10 @@ class Routes {
     // Auth
     this.router.get("/", this.auth);
     this.router.get("/signup", this.auth);
-
     this.router.post("/register", this.auth);
     this.router.post("/authenticate", this.auth);
 
-    this.router.get("/users", this.users);
+    // this.router.get("/users", this.users);
   }
 
   private auth(req: Request, res: Response, next: NextFunction) {
