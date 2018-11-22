@@ -1,0 +1,48 @@
+// MEDIA QUERY MANAGER
+/*
+0 - 600px       - phone
+600 - 900px     - tablet portrait
+900 - 1200px    - tablet landscape
+[1200 - 1800px] - normal styles
+1800 +          - big desktop
+*/
+
+// @mixin respond-phone {
+//   @media (max-width: 600px) { @content };
+// }
+
+/*
+  $breakpoint - argument choices:
+  - phone
+  - tablet portrait
+  - tablet landscape
+  - desktop
+*/
+
+// ORDER: base + typograph > general layout + grid > page layout > components
+
+// 1em = 16px
+// 600 (tamanho da tela) / 16 = 37.5
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      @content;
+    } // 600px
+  }
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) {
+      @content;
+    } // 900px
+  }
+  @if $breakpoint == tab-land {
+    @media (max-width: 75em) {
+      @content;
+    } // 1200px
+  }
+  @if $breakpoint == desktop {
+    @media (min-width: 112.5em) {
+      @content;
+    } // 1800px
+  }
+}

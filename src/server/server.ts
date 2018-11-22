@@ -44,6 +44,12 @@ class ServerExpress {
         : path.resolve("src", "app", "public");
 
     this.app.use(express.static(staticPath));
+
+    let rootPath = path.dirname(
+      require.main.filename || process.mainModule.filename
+    );
+
+    this.app.use("/rootPath", express.static(path.join(rootPath, "../")));
   }
 
   private config(): void {
