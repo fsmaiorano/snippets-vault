@@ -1,5 +1,5 @@
 import { Response, Request, NextFunction } from "express";
-import { CategoryService } from "../../database/services";
+import { CategoryService, SnippetService } from "../../database/services";
 import { Category } from "../models";
 
 class CategoryController {
@@ -29,14 +29,20 @@ class CategoryController {
       const { id } = req.params;
       const { session } = req;
 
-      const categories = await CategoryService.getAllById(
+      const categories = await CategoryService.getAllByUserId(
         parseInt(session.user.id)
       );
 
-      //get snippets too
       const activeCategory = id;
+      const category = categories.filter(cat => cat.id === parseInt(id))[0];
 
-      return res.render("categories/show", { categories, activeCategory });
+      const snippets = await SnippetService.getAllByCategory(category);
+
+      return res.render("categories/show", {
+        categories,
+        snippets,
+        activeCategory
+      });
     } catch (err) {
       console.log(err);
       return next(err);

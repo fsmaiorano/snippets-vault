@@ -5,11 +5,11 @@ import { Category } from "../models";
 class DashboardController {
   constructor() {}
 
-  async index(req: Request, res: Response, next: NextFunction) {
+  async dashboard(req: Request, res: Response, next: NextFunction) {
     try {
       const { session } = req;
 
-      const categories: Category[] = await CategoryService.getAllById(
+      const categories: Category[] = await CategoryService.getAllByUserId(
         parseInt(session.user.id)
       );
 

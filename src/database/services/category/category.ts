@@ -12,11 +12,18 @@ class CategoryServices {
     return categories;
   }
 
-  async getAllById(userId: number): Promise<Category[]> {
+  async getAllByUserId(userId: number): Promise<Category[]> {
     const categories = await getConnection()
       .getRepository(CategoryEntity)
       .find({ where: { userId: userId } });
     return categories;
+  }
+
+  async getById(categoryId: number): Promise<Category> {
+    const category = await getConnection()
+      .getRepository(CategoryEntity)
+      .findOne({ where: { id: categoryId } });
+    return category;
   }
 
   async create(category: Category): Promise<Category> {
