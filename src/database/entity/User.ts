@@ -5,35 +5,35 @@ export default class User {
   @PrimaryGeneratedColumn({
     type: "integer"
   })
-  id!: number;
+  id: number;
 
   @Column({
     nullable: false,
     type: "text"
   })
-  name!: string;
+  name: string;
 
   @Column({
     nullable: false,
     type: "text"
   })
-  email!: string;
+  email: string;
 
   @Column({
     nullable: false,
     type: "text"
   })
-  password!: string;
+  password: string;
 
   @Column({
     nullable: true,
-    type: "date"
+    type: "datetime"
   })
-  createdAt!: Date;
+  createdAt: Date;
 
   @Column({
     nullable: true,
-    type: "date"
+    type: "datetime"
   })
-  updatedAt!: Date;
+  updatedAt: Date;
 }

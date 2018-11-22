@@ -42,9 +42,12 @@ class AuthController {
         updatedAt: new Date()
       };
 
-      await UserService.create(newUser);
+      const createdUser = await UserService.create(newUser);
 
-      return res.redirect("/app/dashboard");
+      req.session.user = createdUser;
+      req.session.save(e => {
+        return res.redirect("/app/dashboard");
+      });
     } catch (err) {
       return next(err);
     }

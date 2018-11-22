@@ -12,20 +12,20 @@ export default class Category {
     nullable: false,
     type: "text"
   })
-  title!: string;
+  title: string;
 
   @ManyToOne(type => User, user => user.id)
-  userId!: User;
+  user: User;
 
   @Column({
     nullable: true,
-    type: "date"
+    type: "datetime"
   })
-  createdAt!: Date;
+  createdAt: Date;
 
   @Column({
     nullable: true,
-    type: "date"
+    type: "datetime"
   })
-  updatedAt!: Date;
+  updatedAt: Date;
 }
