@@ -14,8 +14,8 @@ export default class Category {
   })
   title!: string;
 
-  @ManyToOne(type => Category, user => user.id)
-  user!: User;
+  @ManyToOne(type => User, user => user.id)
+  userId!: User;
 
   @Column({
     nullable: true,

@@ -1,6 +1,6 @@
 import { getConnection } from "typeorm";
 import UserEntity from "../../entity/User";
-import User from "app/models/users";
+import { User } from "../../../app/models";
 
 class UserServices {
   constructor() {}

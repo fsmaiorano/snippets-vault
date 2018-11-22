@@ -1,3 +1,4 @@
-import Users from './users';
+import User from "./user";
+import Category from "./category";
 
-export {Users};
+export { User, Category };

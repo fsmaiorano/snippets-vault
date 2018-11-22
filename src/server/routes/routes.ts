@@ -4,7 +4,8 @@ import middlewares from "../middlewares/middlewares";
 import {
   UserController,
   AuthController,
-  DashboardController
+  DashboardController,
+  CategoryController
 } from "../../app/controllers";
 
 class Routes {
@@ -29,6 +30,9 @@ class Routes {
 
     // Dashboard
     this.router.get("/app/dashboard", this.dashboard);
+
+    // Categories
+    this.router.post("/app/categories/create", this.category);
 
     // this.router.get("/users", this.users);
   }
@@ -56,6 +60,10 @@ class Routes {
 
   private dashboard(req: Request, res: Response, next: NextFunction) {
     return DashboardController.index(req, res, next);
+  }
+
+  private category(req: Request, res: Response, next: NextFunction) {
+    return CategoryController.create(req, res, next);
   }
 
   // private users(req: Request, res: Response, next: NextFunction) {

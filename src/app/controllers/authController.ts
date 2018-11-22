@@ -1,5 +1,5 @@
 // Models
-import User from "../models/users";
+import User from "../models/user";
 import bcrypt from "bcryptjs";
 import { UserService } from "../../database/services";
 import { Request, Response } from "express";
@@ -50,7 +50,7 @@ class AuthController {
     }
   }
 
-  async authentication(req: RequestSession, res: Response, next: NextFunction) {
+  async authentication(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.body;
       const user = await UserService.getByEmail(email);

@@ -1,7 +1,7 @@
 import { UserService } from "../../database/services";
 
 // Models
-import User from "app/models/users";
+import { User } from "../models";
 
 class UserController {
   constructor() {}

@@ -1,39 +1,39 @@
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
 export default class User {
   @PrimaryGeneratedColumn({
-    type: 'integer'
+    type: "integer"
   })
   id!: number;
 
   @Column({
     nullable: false,
-    type: 'text'
+    type: "text"
   })
   name!: string;
 
   @Column({
     nullable: false,
-    type: 'text'
+    type: "text"
   })
   email!: string;
 
   @Column({
     nullable: false,
-    type: 'text'
+    type: "text"
   })
   password!: string;
 
   @Column({
     nullable: true,
-    type: 'date'
+    type: "date"
   })
   createdAt!: Date;
 
   @Column({
     nullable: true,
-    type: 'date'
+    type: "date"
   })
   updatedAt!: Date;
 }
