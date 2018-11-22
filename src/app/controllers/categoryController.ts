@@ -28,11 +28,15 @@ class CategoryController {
     try {
       const { id } = req.params;
       const { session } = req;
-      const categories = await CategoryService.getAllById(parseInt(session.id));
+
+      const categories = await CategoryService.getAllById(
+        parseInt(session.user.id)
+      );
 
       //get snippets too
+      const activeCategory = id;
 
-      debugger;
+      return res.render("categories/show", { categories, activeCategory });
     } catch (err) {
       console.log(err);
       return next(err);

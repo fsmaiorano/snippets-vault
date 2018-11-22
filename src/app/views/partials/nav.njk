@@ -6,16 +6,16 @@
 
       <div class="">
         <strong>CATEGORIAS</strong>
-
+        Lista
         <ul>
-        {# {% for category in categories %}
+        {% for category in categories %}
           <li class='{% if category.id == activeCategory %}active{% endif %}'>
             <a href="/app/categories/{{ category.id }}">
               {{ category.title }}
               <span>{{ category.Snippets.length }}</span>
             </a>
           </li>
-        {% endfor %} #}
+        {% endfor %}
         </ul>
         {# <a href="#" data-modal-open="#new-category">NOVA CATEGORIA</a> #}
       </div>
