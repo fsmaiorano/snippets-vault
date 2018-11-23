@@ -1,15 +1,15 @@
 {% extends 'layouts/default.njk' %}
-
 {% block body %}
+<link rel="stylesheet" href="/assetsPath/assets/styles/pages/signup.css">
 
-    <div class="">
-      <form method="POST" action="/register" class="">
+    <div class="signup">
+      <form method="POST" class="form"  action="/register">
         <h1>Criar Conta</h1>
-        <input name="name" type="name" placeholder="Digite seu nome" />
-        <input name="email" type="email" placeholder="Digite seu e-mail" />
-        <input name="password" type="password" placeholder="Digite sua senha" />
-        <button type="submit">Criar minha conta</button>
-        <a href="/">Já tenho conta</a>
+        <input name="name" class="form__input form-control" type="name" placeholder="Digite seu nome" />
+        <input name="email" class="form__input form-control" type="email" placeholder="Digite seu e-mail" />
+        <input name="password" class="form__input form-control" type="password" placeholder="Digite sua senha" />
+        <button class="form__button btn btn-primary btn-block" type="submit">Criar minha conta</button>
+        <a class="form__link" href="/">Voltar</a>
       </form>
     </div>
 

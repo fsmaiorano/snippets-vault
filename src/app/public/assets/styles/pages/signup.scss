@@ -15,7 +15,7 @@
     align-items: center;
     justify-items: center;
     width: 40rem;
-    height: 30rem;
+    height: 35rem;
     padding: 3rem;
     font-size: $default-font-size;
     background-color: #fff;
@@ -35,6 +35,10 @@
       }
 
       &:nth-of-type(2) {
+        margin: 1rem auto 0 auto;
+      }
+
+      &:nth-of-type(3) {
         margin: 1rem auto 1rem auto;
       }
     }
