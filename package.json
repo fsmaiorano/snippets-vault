@@ -18,7 +18,7 @@
     "typeorm:sync": "yarn typeorm schema:sync",
     "typeorm:drop": "yarn typeorm schema:drop",
     "typeorm:reset": "yarn typeorm:drop && yarn typeorm:sync",
-    "watch:css": "node-sass --watch src/app/public/assets/styles -o src/app/public/assets/styles",
+    "watch:css": "node-sass --watch src/app/public/assets/styles -o dist/app/public/assets/styles",
     "build:css": "node-sass src/app/public/assets/styles -o dist/app/public/assets/styles --output-style compressed && npm run prefix:css",
     "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" dist/app/public/assets/styles --replace"
   },

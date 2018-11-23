@@ -5,11 +5,6 @@ import { UserService } from "../../database/services";
 import { Request, Response } from "express";
 import { NextFunction } from "connect";
 
-type RequestSession = Request & {
-  session: Express.Session;
-  sessionID: string;
-};
-
 class AuthController {
   constructor() {}
 

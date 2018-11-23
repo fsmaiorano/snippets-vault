@@ -1,5 +1,5 @@
 declare namespace Express {
   interface Request {
-    session: Express.Session;
+    session?: Express.Session;
   }
 }

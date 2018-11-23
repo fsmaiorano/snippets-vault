@@ -1,15 +1,14 @@
 {% extends 'layouts/default.njk' %}
 {% block body %}
 
- <div class="">
-      <form method="POST" action="/authenticate" class="">
-        <h1>Fazer Login</h1>
-
-        <input name="email" type="email" placeholder="Digite seu e-mail" />
-        <input name="password" type="password" placeholder="Digite sua senha" />
-        <button type="submit">Entrar</button>
-        <a href="/signup">Criar conta grátis</a>
+ <div class="signin">
+      <form class="form" method="POST"  action="/authenticate" >
+        <h1>Snippets Vault</h1>
+        <input class="form__input form-control" name="email" type="email" placeholder="Digite seu e-mail" />
+        <input class="form__input form-control" name="password" type="password" placeholder="Digite sua senha" />
+        <button class="form__button btn btn-primary btn-block" type="submit">Entrar</button>
+        <a class="form__link" href="/signup">Criar conta grátis</a>
       </form>
-    </div>
+  </div>
 
 {% endblock%}

@@ -15,6 +15,8 @@ class ServerExpress {
   constructor() {
     this.createApp();
     this.config();
+    this.configStatic();
+    this.configSession();
     this.middlewares();
     this.routes();
     this.listen();
@@ -29,27 +31,6 @@ class ServerExpress {
   private middlewares(): void {
     this.app.use(express.json());
     this.app.use(bodyParser());
-
-    this.app.use(
-      session({
-        secret: "secret",
-        resave: false,
-        saveUninitialized: true
-      })
-    );
-
-    const staticPath =
-      this.environment === "production"
-        ? path.resolve("app", "public")
-        : path.resolve("src", "app", "public");
-
-    this.app.use(express.static(staticPath));
-
-    let rootPath = path.dirname(
-      require.main.filename || process.mainModule.filename
-    );
-
-    this.app.use("/rootPath", express.static(path.join(rootPath, "../")));
   }
 
   private config(): void {
@@ -86,6 +67,35 @@ class ServerExpress {
 
   private createDBConnection(): void {
     database.createConnection();
+  }
+
+  private configStatic(): void {
+    const staticPath =
+      this.environment === "production"
+        ? path.resolve("app", "public")
+        : path.resolve("src", "app", "public");
+
+    this.app.use(express.static(staticPath));
+
+    let rootPath = path.dirname(
+      require.main.filename || process.mainModule.filename
+    );
+
+    this.app.use(
+      "/assetsPath",
+      express.static(path.join(rootPath, "../dist/app/public"))
+    );
+    this.app.use("/rootPath", express.static(path.join(rootPath, "../")));
+  }
+
+  private configSession(): void {
+    this.app.use(
+      session({
+        secret: "secret",
+        resave: false,
+        saveUninitialized: true
+      })
+    );
   }
 }
 
