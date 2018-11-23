@@ -69,6 +69,13 @@ class AuthController {
       return next(err);
     }
   }
+
+  async destroy(req: Request, res: Response, next: NextFunction) {
+    req.session.destroy(() => {
+      res.clearCookie("root");
+      return res.redirect("/");
+    });
+  }
 }
 
 export default new AuthController();

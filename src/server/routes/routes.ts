@@ -32,6 +32,7 @@ class Routes {
 
     // Dashboard
     this.router.get("/app/dashboard", DashboardController.dashboard);
+    this.router.get("/app/logout", AuthController.destroy);
 
     // Categories
     this.router.post("/app/categories/create", CategoryController.create);
