@@ -54,10 +54,12 @@ class AuthController {
       const user = await UserService.getByEmail(email);
 
       if (!user) {
+        req.flash("error", "Usuário não encontrado");
         return res.redirect("back");
       }
 
       if (!(await bcrypt.compare(password, user.password))) {
+        req.flash("error", "Senha incorreta");
         return res.redirect("back");
       }
 

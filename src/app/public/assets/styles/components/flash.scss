@@ -1,0 +1,11 @@
+@import "../base/variables";
+
+.flashMessage {
+  font-size: $default-font-size;
+  width: 100%;
+  text-align: center;
+
+  &--side {
+    color: blue;
+  }
+}

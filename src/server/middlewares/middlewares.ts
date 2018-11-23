@@ -26,6 +26,12 @@ class Middlewares {
 
     return res.redirect("/app/dashboard");
   }
+
+  public connectFlash(req: Request, res: Response, next: NextFunction) {
+    res.locals.flashSuccess = req.flash("success");
+    res.locals.flashError = req.flash("error");
+    return next();
+  }
 }
 
 export default new Middlewares();

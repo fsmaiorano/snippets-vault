@@ -19,6 +19,7 @@ class Routes {
   init() {
     // MIDDLEWARES
     this.router.use(middlewares.log);
+    this.router.use(middlewares.connectFlash);
 
     // ROUTES
 
