@@ -9,6 +9,23 @@ class Middlewares {
     `);
     return next();
   }
+
+  public isLogged(req: Request, res: Response, next: NextFunction) {
+    if (req.session && req.session.user) {
+      res.locals.user = req.session.user;
+      return next();
+    }
+
+    return res.redirect("/");
+  }
+
+  public guest(req: Request, res: Response, next: NextFunction) {
+    if (req.session && !req.session.user) {
+      return next();
+    }
+
+    return res.redirect("/app/dashboard");
+  }
 }
 
 export default new Middlewares();

@@ -6,6 +6,8 @@ import routes from "./routes/routes";
 import database from "../database";
 import bodyParser = require("body-parser");
 
+const fileStore = require("session-file-store")(session);
+
 class ServerExpress {
   private app!: express.Application;
   private environment: any = process.env.NODE_ENV;
@@ -91,9 +93,13 @@ class ServerExpress {
   private configSession(): void {
     this.app.use(
       session({
+        name: "root",
         secret: "secret",
-        resave: false,
-        saveUninitialized: true
+        resave: true,
+        saveUninitialized: true,
+        store: new fileStore({
+          path: path.resolve(__dirname, "sessions")
+        })
       })
     );
   }

@@ -23,10 +23,12 @@ class Routes {
     // ROUTES
 
     // Auth
-    this.router.get("/", AuthController.signin);
-    this.router.get("/signup", AuthController.signup);
+    this.router.get("/", middlewares.guest, AuthController.signin);
+    this.router.get("/signup", middlewares.guest, AuthController.signup);
     this.router.post("/register", AuthController.register);
     this.router.post("/authenticate", AuthController.authentication);
+
+    this.router.use("/app", middlewares.isLogged);
 
     // Dashboard
     this.router.get("/app/dashboard", DashboardController.dashboard);
