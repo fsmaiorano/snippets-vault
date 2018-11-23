@@ -40,3 +40,5 @@ $(document).keydown(function(e) {
     $(".modal").removeClass("active");
   }
 });
+
+console.log("teste");
