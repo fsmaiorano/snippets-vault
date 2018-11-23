@@ -1,12 +1,11 @@
-    <nav id="main">
-      <div class="">
+    <nav class="sidebar" id="main">
+      <div class="sidebar__header">
         <strong>Minha Biblioteca</strong>
         <a href="/signout">Sair</a>
       </div>
 
-      <div class="">
+      <div class="sidebar__content">
         <strong>CATEGORIAS</strong>
-        Lista
         <ul>
         {% for category in categories %}
           <li class='{% if category.id == activeCategory %}active{% endif %}'>
@@ -27,8 +26,8 @@
         <a href="#" data-modal-close="#new-category">CANCELAR</a>
       </form>
     </div> #}
-<form class="" method="POST" action="/app/categories/create">
+{# <form class="" method="POST" action="/app/categories/create">
         <input type="text" name="title" placeholder="Título da categoria" />
         <button type="submit">SALVAR CATEGORIA</button>
         <a href="#" data-modal-close="#new-category">CANCELAR</a>
-      </form>
+      </form> #}

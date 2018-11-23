@@ -13,7 +13,7 @@ class DashboardController {
         parseInt(session.user.id)
       );
 
-      return res.render("dashboard/index", { categories });
+      return res.render("dashboard/dashboard", { categories });
     } catch (err) {
       console.log(err);
       next(err);
