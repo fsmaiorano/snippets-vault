@@ -6,16 +6,17 @@
 
       <div class="sidebar__content">
         <strong>CATEGORIAS</strong>
-        <ul>
+        <div class="categories-list">
+
         {% for category in categories %}
-          <li class='{% if category.id == activeCategory %}active{% endif %}'>
-            <a href="/app/categories/{{ category.id }}">
-              {{ category.title }}
-              <span>{{ category.Snippets.length }}</span>
-            </a>
-          </li>
+          <a href="/app/categories/{{ category.id }}" 
+            class="{% if category.id == activeCategory %}active{% endif %}">
+            <span>{{ category.title }}</span>
+            <span>{{ category.Snippets.length }}</span>
+          </a>
         {% endfor %}
-        </ul>
+
+        </div>
         {# <a href="#" data-modal-open="#new-category">NOVA CATEGORIA</a> #}
       </div>
     </nav>

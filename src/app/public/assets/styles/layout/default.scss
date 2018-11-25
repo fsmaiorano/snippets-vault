@@ -20,5 +20,33 @@
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+
+    .categories-list {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      > a,
+      > a:hover,
+      > a:active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 5rem;
+
+        text-decoration: none;
+        color: #fff;
+      }
+
+      > a:hover,
+      > a:active,
+      .active {
+        background-color: #103145;
+      }
+    }
   }
 }

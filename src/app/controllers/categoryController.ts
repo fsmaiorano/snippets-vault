@@ -33,7 +33,7 @@ class CategoryController {
         parseInt(session.user.id)
       );
 
-      const activeCategory = id;
+      const activeCategory = parseInt(id);
       const category = categories.filter(cat => cat.id === parseInt(id))[0];
 
       const snippets = await SnippetService.getAllByCategory(category);
