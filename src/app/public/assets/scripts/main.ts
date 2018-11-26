@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       spellChecker: false,
       status: false
     });
+  });
 
     $("[data-modal-open]").click(function(event) {
       event.preventDefault();
@@ -25,5 +26,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $(".modal").removeClass("active");
       }
     });
-  });
 });

@@ -1,21 +1,22 @@
 {% extends 'layouts/default.njk' %}
 
 {% block body %}
+<link rel="stylesheet" href="/assetsPath/assets/styles/pages/snippets.css">
+
   <div class="snippets">
     {% include "partials/nav.njk" %}
     {% include "partials/listSnippets.njk" %}
 
     <section class="snippet-content">
       <div class="actions">
-        <a href="#" data-modal-open="#edit-snippet" class="edit">Editar</a>
+        <a class="actions__edit" href="#" data-modal-open="#edit-snippet" class="edit">Editar</a>
         <form action="/app/categories/{{ activeCategory }}/snippets/{{ currentSnippet.id }}?_method=DELETE" method="POST">
-          <button type="submit">Remover</button>
+          <button class="actions__delete" type="submit">Remover</button>
         </form>
       </div>
       <h1>{{ currentSnippet.title }}</h1>
         <div class="content">
-          {{ currentSnippet.formattedContent | safe }}
-          {{currentSnippet.title}}
+          {{currentSnippet.content | safe}}
         </div>
     </section>
 

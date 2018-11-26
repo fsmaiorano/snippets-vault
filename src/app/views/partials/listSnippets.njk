@@ -3,13 +3,17 @@
         <a href="#" class="btn btn-primary btn-lg btn-block" data-modal-open="#new-snippet">NOVO SNIPPET</a>
       </div>
       <div class="list">
+      <ul>
       {% for snippet in snippets %}
-        <a href="/app/categories/{{activeCategory}}/snippets/{{snippet.id}}">
-          <strong>{{snippet.title}}</strong>
-          <p>{{snippet.excerpt}}</p>
-      </a>
+        <li>
+          <a href="/app/categories/{{activeCategory}}/snippets/{{snippet.id}}">
+            <strong>{{snippet.title}}</strong>
+            <p>{{snippet.excerpt}}</p>
+          </a>
+        </li>
       {% endfor %}
       </div>
+      </ul>
     </section>
 
     <div class="custom-modal" id="new-snippet">

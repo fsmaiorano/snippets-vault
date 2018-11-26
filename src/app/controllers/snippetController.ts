@@ -1,6 +1,21 @@
 import { Request, Response, NextFunction } from "express";
 import { SnippetService, CategoryService } from "../../database/services";
-import { Snippet } from "..//models";
+import { Snippet } from "../models";
+
+const hljs = require("highlight.js");
+const md = require("markdown-it")({
+  highlight: (str: any, lang: any) => {
+    console.log("passei");
+    if (lang && hljs.getLanguage(lang)) {
+      return `<pre class="hljs"><code>${
+        hljs.highlight(lang, str.trim(), true).value
+      }</code></pre>`;
+    }
+    return `<pre class="hljs"><code>${md.utils.escapeHtml(
+      str.trim()
+    )}</code></pre>`;
+  }
+});
 
 class SnippetController {
   constructor() {}
@@ -14,7 +29,7 @@ class SnippetController {
 
       let newSnippet = new Snippet();
       newSnippet.title = title;
-      newSnippet.content = content;
+      newSnippet.content = md.render(content);
       newSnippet.category = category;
       newSnippet.createdAt = new Date();
       newSnippet.updatedAt = new Date();
@@ -34,6 +49,8 @@ class SnippetController {
       const snippets = await SnippetService.getAllByCategory(categoryId);
 
       const currentSnippet = await SnippetService.getSnippetById(snippetId);
+
+      currentSnippet.content = md.render(currentSnippet.content);
 
       res.render("snippets/show", {
         activeCategory: categoryId,

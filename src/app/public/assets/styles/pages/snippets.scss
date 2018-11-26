@@ -1,4 +1,25 @@
+@import "../base/_variables";
+
 .snippets {
   display: flex;
-  flex-direction: row;
+  font-size: $default-font-size;
+
+  > .snippet-content {
+    .actions {
+      display: flex;
+      flex-direction: row;
+      margin: auto 2rem;
+
+      &__edit {
+      }
+
+      &__delete {
+        margin-left: 2rem;
+      }
+
+      > .content {
+        padding: 5rem;
+      }
+    }
+  }
 }
