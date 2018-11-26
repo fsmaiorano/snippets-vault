@@ -31,7 +31,7 @@ class SnippetController {
       newSnippet.title = title;
       newSnippet.content = md.render(content);
       // newSnippet.content = content;
-      newSnippet.category = category;
+      newSnippet.categoryId = category.id;
       newSnippet.createdAt = new Date();
       newSnippet.updatedAt = new Date();
 
@@ -65,7 +65,16 @@ class SnippetController {
   }
 
   async update(req: Request, res: Response, next: NextFunction) {}
-  async destroy(req: Request, res: Response, next: NextFunction) {}
+  async destroy(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { snippetId } = req.params;
+      const snippet = await SnippetService.getSnippetById(snippetId);
+      await SnippetService.destroy(snippet);
+      return res.redirect(`/app/categories/${req.params.categoryId}`);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default new SnippetController();

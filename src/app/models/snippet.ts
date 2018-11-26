@@ -2,7 +2,7 @@ import Category from "./category";
 
 export default class Snippet {
   id: number;
-  category: Category;
+  categoryId: number;
   title: string;
   content: string;
   createdAt: Date;

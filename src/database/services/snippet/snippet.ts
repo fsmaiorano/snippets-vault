@@ -39,6 +39,12 @@ class CategoryServices {
       .save(snippet);
     return newSnippet;
   }
+
+  async destroy(snippet: Snippet) {
+    await getConnection()
+      .getRepository(SnippetEntity)
+      .delete(snippet);
+  }
 }
 
 export default new CategoryServices();

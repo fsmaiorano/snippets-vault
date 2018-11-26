@@ -6,6 +6,7 @@ import routes from "./routes/routes";
 import database from "../database";
 import connectFlash from "connect-flash";
 import bodyParser = require("body-parser");
+import methodOverride from "method-override";
 
 const fileStore = require("session-file-store")(session);
 
@@ -35,6 +36,7 @@ class ServerExpress {
     this.app.use(express.json());
     this.app.use(bodyParser());
     this.app.use(connectFlash());
+    this.app.use(methodOverride("_method"));
   }
 
   private config(): void {
