@@ -33,11 +33,11 @@ class SnippetController {
       const categories = await CategoryService.getAllByUserId(session.user.id);
       const snippets = await SnippetService.getAllByCategory(categoryId);
 
-      const snippet = snippets.filter(snip => (snip.id = snippetId))[0];
+      const currentSnippet = await SnippetService.getSnippetById(snippetId);
 
       res.render("snippets/show", {
         activeCategory: categoryId,
-        currentSnippet: snippet,
+        currentSnippet: currentSnippet,
         categories,
         snippets
       });

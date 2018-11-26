@@ -19,10 +19,17 @@ class CategoryServices {
     return snippets;
   }
 
+  async getSnippetById(snippetId: number): Promise<Snippet> {
+    const snippet = await getConnection()
+      .getRepository(SnippetEntity)
+      .findOne(snippetId);
+    return snippet;
+  }
+
   async getAllByCategory(category: Category): Promise<Snippet[]> {
     const snippets = await getConnection()
       .getRepository(SnippetEntity)
-      .find({ where: { category: category } });
+      .find({ where: { categoryId: category.id } });
     return snippets;
   }
 

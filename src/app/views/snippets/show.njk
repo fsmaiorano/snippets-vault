@@ -1,8 +1,10 @@
 {% extends 'layouts/default.njk' %}
 
 {% block body %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<link rel="stylesheet" href="/assetsPath/assets/styles/pages/snippets.css">
 
-  <div class="wrapper">
+  <div class="snippets">
     {% include "partials/nav.njk" %}
     {% include "partials/listSnippets.njk" %}
 
@@ -18,6 +20,7 @@
       <h1>{{ currentSnippet.title }}</h1>
       <div class="content">
         {# {{ currentSnippet.formattedContent | safe }} #}
+        {{currentSnippet.content}}
         {{currentSnippet.title}}
       </div>
     </section>
@@ -33,5 +36,5 @@
       </form>
     </div>
   </div>
-
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 {% endblock %}
