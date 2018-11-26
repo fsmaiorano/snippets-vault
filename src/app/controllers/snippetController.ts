@@ -47,11 +47,10 @@ class SnippetController {
       const { session } = req;
       const { categoryId, snippetId } = req.params;
       const categories = await CategoryService.getAllByUserId(session.user.id);
-      const snippets = await SnippetService.getAllByCategory(categoryId);
+      const category = await CategoryService.getById(categoryId);
+      const snippets = await SnippetService.getAllByCategory(category);
 
       const currentSnippet = await SnippetService.getSnippetById(snippetId);
-
-      // currentSnippet.content = md.render(currentSnippet.content);
 
       res.render("snippets/show", {
         activeCategory: categoryId,

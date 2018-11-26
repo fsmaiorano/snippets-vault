@@ -20,12 +20,12 @@ export default class Snippet {
   })
   content: string;
 
-  @ManyToOne(type => Category, category => category, {
+  @ManyToOne(type => Category, category => category.id, {
     onUpdate: "CASCADE",
     onDelete: "CASCADE",
     nullable: false
   })
-  category: Category;
+  categoryId: number;
 
   @Column({
     nullable: true,
