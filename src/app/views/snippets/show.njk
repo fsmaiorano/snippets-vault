@@ -16,7 +16,9 @@
       </div>
       <h1>{{ currentSnippet.title }}</h1>
         <div class="content">
-          {{currentSnippet.content | safe}}
+          <pre>
+            {{currentSnippet.content | safe}}
+          </pre>
         </div>
     </section>
 

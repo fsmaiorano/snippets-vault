@@ -9,21 +9,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
   });
 
-    $("[data-modal-open]").click(function(event) {
-      event.preventDefault();
+  $("[data-modal-open]").click(function(event) {
+    event.preventDefault();
 
-      $($(this).data("modal-open")).addClass("active");
-    });
+    $($(this).data("modal-open")).addClass("active");
+  });
 
-    $("[data-modal-close]").click(function(event) {
-      event.preventDefault();
+  $("[data-modal-close]").click(function(event) {
+    event.preventDefault();
 
-      $($(this).data("modal-close")).removeClass("active");
-    });
+    $($(this).data("modal-close")).removeClass("active");
+  });
 
-    $(document).keydown(function(e) {
-      if (e.keyCode == 27) {
-        $(".modal").removeClass("active");
-      }
-    });
+  $(document).keydown(function(e) {
+    if (e.keyCode == 27) {
+      $(".modal").removeClass("active");
+    }
+  });
 });

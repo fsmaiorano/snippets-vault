@@ -30,6 +30,7 @@ class SnippetController {
       let newSnippet = new Snippet();
       newSnippet.title = title;
       newSnippet.content = md.render(content);
+      // newSnippet.content = content;
       newSnippet.category = category;
       newSnippet.createdAt = new Date();
       newSnippet.updatedAt = new Date();
@@ -50,7 +51,7 @@ class SnippetController {
 
       const currentSnippet = await SnippetService.getSnippetById(snippetId);
 
-      currentSnippet.content = md.render(currentSnippet.content);
+      // currentSnippet.content = md.render(currentSnippet.content);
 
       res.render("snippets/show", {
         activeCategory: categoryId,
