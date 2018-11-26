@@ -1,9 +1,6 @@
 {% extends 'layouts/default.njk' %}
 
 {% block body %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-<link rel="stylesheet" href="/assetsPath/assets/styles/pages/snippets.css">
-
   <div class="snippets">
     {% include "partials/nav.njk" %}
     {% include "partials/listSnippets.njk" %}
@@ -12,22 +9,19 @@
       <div class="actions">
         <a href="#" data-modal-open="#edit-snippet" class="edit">Editar</a>
         <form action="/app/categories/{{ activeCategory }}/snippets/{{ currentSnippet.id }}?_method=DELETE" method="POST">
-
           <button type="submit">Remover</button>
         </form>
       </div>
-
       <h1>{{ currentSnippet.title }}</h1>
-      <div class="content">
-        {# {{ currentSnippet.formattedContent | safe }} #}
-        {{currentSnippet.content}}
-        {{currentSnippet.title}}
-      </div>
+        <div class="content">
+          {{ currentSnippet.formattedContent | safe }}
+          {{currentSnippet.title}}
+        </div>
     </section>
 
     <div class="modal" id="edit-snippet">
        <form class="modal-content" method="POST" action="/app/categories/{{ activeCategory }}/snippets/{{ currentSnippet.id }}?_method=PUT">
-        <input type="text" name="title" placeholder="Título da categoria" value="{{ currentSnippet.title }}" />
+        <input type="text" name="title" placeholder="Título do Snippet" value="{{ currentSnippet.title }}" />
         <div class="content-container">
           <textarea type="text" name="content" class="mde" placeholder="Conteúdo do snippet">{{ currentSnippet.content }}</textarea>
         </div>
@@ -36,5 +30,4 @@
       </form>
     </div>
   </div>
-<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 {% endblock %}
